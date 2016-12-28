@@ -1,0 +1,11 @@
+version: '2'
+services:
+  client:
+      build: .
+      ports:
+          - "3000:3000"
+          - "4200:4200"
+          - "49153:49153"
+      volumes:
+          - .:/var/opt/codefiction-top/
+      entrypoint: "/entrypoint.sh"
