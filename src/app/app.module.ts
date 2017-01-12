@@ -8,13 +8,15 @@ import { TopMainComponent } from './top-main/top-main.component';
 import {routing} from "./app.route";
 import * as io from 'socket.io-client';
 import { UserInfoService } from './userinfo.service';
-import { RegisterComponent } from './register/register.component'
+import { RegisterComponent } from './register/register.component';
+import { ChatComponent } from './chat/chat.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     TopMainComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

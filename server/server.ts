@@ -1,4 +1,6 @@
 import {Datastructure} from "../Datastructure/TopperStack";
+import {Chat} from "../Datastructure/Message";
+
 /**
  * Created by ugur on 2016-12-26.
  */
@@ -40,6 +42,14 @@ io.on('connection', function(client){
         let currentStack = FindAddStack(data.room, topperStack);
         currentStack.topThat(data);
         io.in(data.room).emit('update_toppers', currentStack);
+    });
+
+
+    client.on('message', function(data: Chat.Message){
+        if(data.message) {
+            data.date = new Date();
+            io.in(data.room).emit('message', data);
+        }
     });
 
     // Todo: How to handle disconnection

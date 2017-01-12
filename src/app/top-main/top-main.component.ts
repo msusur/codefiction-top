@@ -32,11 +32,8 @@ export class TopMainComponent implements OnInit {
 
     }
 
-    onTopMe() {
+    topMe() {
         this.userInfoService.getSocketConnection().emit('top_me', this.currentTopper);
     }
 
-    ngOnDestroy() {
-
-    }
 }
