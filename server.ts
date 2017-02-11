@@ -1,12 +1,24 @@
-import {Datastructure} from "../Datastructure/TopperStack";
-import {Chat} from "../Datastructure/Message";
+import {Datastructure} from "./Datastructure/TopperStack";
+import {Chat} from "./Datastructure/Message";
 
 /**
  * Created by ugur on 2016-12-26.
  */
+let express = require('express');
+let app = express();
+let server = require('http').Server(app);
+let io = require('socket.io')(server);
 
-let http_server = require('http').createServer().listen(3000, '0.0.0.0');
-let io = require('socket.io').listen(http_server);
+app.use(express.static('dist'))
+
+
+app.get('*', function (req, res) {
+    res.sendfile(__dirname + '/dist/index.html');
+});
+
+
+server.listen(80);
+
 let topperStack : Datastructure.IStackMap = { }
 let totalToppers : number = 0;
 
@@ -17,6 +29,7 @@ function FindAddStack(room: string, currentStack): Datastructure.TopperStack {
     }
     return currentStack[room];
 }
+
 
 io.on('connection', function(client){
 
