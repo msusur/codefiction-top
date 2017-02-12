@@ -12,7 +12,7 @@ let io = require('socket.io')(server);
 app.use(express.static('dist'))
 
 
-app.get('*', function (req, res) {
+app.get('/*', function (req, res) {
     res.sendfile(__dirname + '/dist/index.html');
 });
 
