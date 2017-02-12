@@ -16,8 +16,9 @@ app.get('/*', function (req, res) {
     res.sendfile(__dirname + '/dist/index.html');
 });
 
+let port = process.env.PORT || 4200;
 
-server.listen(80);
+server.listen(port);
 
 let topperStack : Datastructure.IStackMap = { }
 let totalToppers : number = 0;

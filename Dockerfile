@@ -1,7 +1,7 @@
 FROM node:7.3-alpine
 ENV HOME /var/opt/codefiction-top/
 
-EXPOSE 80
+EXPOSE 4200
 RUN mkdir $HOME
 
 WORKDIR $HOME
