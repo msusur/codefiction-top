@@ -1,5 +1,5 @@
-import {Datastructure} from "../../Datastructure/TopperStack";
-import {Injectable} from "@angular/core";
+import { Datastructure } from "../../Datastructure/TopperStack";
+import { Injectable } from "@angular/core";
 import * as io from 'socket.io-client';
 
 /**
@@ -10,22 +10,36 @@ export class SocketService {
 
     private socket;
 
-    currentTopper: Datastructure.ITopper = {id: null, name: null, color: SocketService.generateHex(), room: null};
+    currentTopper: Datastructure.ITopper = {
+        id: null,
+        name: null,
+        color: SocketService.generateHex(),
+        room: null
+    };
 
     constructor() {
         //Connects the current host
         this.socket = io();
     }
 
-    getCurrentTopper() : Datastructure.ITopper {
+    getCurrentTopper(): Datastructure.ITopper {
         return this.currentTopper
     }
 
+    // obsolete.
     getSocketConnection() {
         return this.socket;
     }
 
-    static generateHex() : string {
+    public emit(eventName: string, value: any): void {
+        this.socket.emit(eventName, value);
+    }
+
+    public on(eventName: string, callback: any): void {
+        this.socket.on(eventName, callback);
+    }
+
+    static generateHex(): string {
         return '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
     }
 }

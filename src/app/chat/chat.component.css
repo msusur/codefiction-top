@@ -1,0 +1,23 @@
+.chatWindow {
+    background: #e5edf9;
+}
+
+.chatwindow-wrapper {
+    height: 350px;
+    overflow-y: scroll;
+}
+
+.message-box {
+    height: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.message-item {
+    padding: 10px;
+}
+
+b {
+    color: #2e69c9;
+}

@@ -1,28 +1,17 @@
-import {Component, AfterViewChecked, ElementRef, ViewChild, OnInit} from '@angular/core';
+import { Component, AfterViewChecked, ElementRef, ViewChild, OnInit } from '@angular/core';
 
-import {SocketService} from "../socket.service";
-import {Router} from "@angular/router";
-import {Datastructure} from "../../../Datastructure/TopperStack";
-import {Chat} from "../../../Datastructure/Message";
+import { SocketService } from "../socket.service";
+import { Router } from "@angular/router";
+import { Datastructure } from "../../../Datastructure/TopperStack";
+import { Chat } from "../../../Datastructure/Message";
 
 @Component({
     selector: 'app-chat',
-    template: `<div class="c-card c-card--highest chatWindow">
-    <div class="c-card__item c-card__item--brand">Live Chat</div>
-    <div #chatwindow (click)="scrollToBottom()" class="chatwindow-wrapper">
-        <div *ngFor="let message of messages" class="message-item" title="{{message.date |  date: 'H:m:s'}}"><b>@{{message.sender}}</b> {{message.message}}</div>
-    </div>
-    </div>
-<input type="text" name="message" id="message"  (keyup.enter)="sendMessage($event)" placeholder="Say something..." class="c-field message-box" />
-`, styles: ['.chatWindow { background: #e5edf9;  }',
-            '.chatwindow-wrapper { height: 350px;  overflow-y: scroll; }',
-            '.message-box { height: 60px; font-size: 20px; font-weight: bold; margin-top: 10px; }',
-            '.message-item { padding: 10px; }',
-            'b { color: #2e69c9; }']
+    templateUrl: './chat.component.html',
+    styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, AfterViewChecked {
-    @ViewChild('chatwindow') private myScrollContainer: ElementRef;
-
+    @ViewChild('chatwindow') public myScrollContainer: ElementRef;
 
     private _prevChatHeight: number = 0;
     currentTopper: Datastructure.ITopper;
@@ -58,7 +47,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
 
     scrollToBottom(): void {
-        if(this._canScroll()) {
+        if (this._canScroll()) {
             try {
                 this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight + 30;
             } catch (err) {
